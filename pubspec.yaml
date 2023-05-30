@@ -38,6 +38,9 @@ dependencies:
   intl: ^0.18.1
   provider: ^6.0.5
   dotted_border: ^2.0.0+3
+  flutter_svg: ^2.0.5
+  flutter_local_notifications: ^14.1.0
+  flutter_native_timezone: ^2.0.0
 
 dev_dependencies:
   flutter_test:

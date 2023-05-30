@@ -1,26 +1,34 @@
 import 'package:clock_app/data/models/menu_info.dart';
 import 'package:clock_app/utils/custom_colors.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
 import '../data/data.dart';
 import '../data/enums.dart';
+import '../notifications/noti.dart';
 import 'alaram_page.dart';
 import 'clock_page.dart';
-import 'clock_view.dart';
 
 class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+      FlutterLocalNotificationsPlugin();
+
+  @override
+  void initState() {
+    Noti.initialize(flutterLocalNotificationsPlugin);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: const Color(0xFF2D2F41),
       body: Row(
@@ -37,15 +45,18 @@ class _HomePageState extends State<HomePage> {
           Expanded(
             child: Consumer<MenuInfo>(
               builder: (context, value, child) {
-                if (value.menuType == MenuType.clock) 
-                return ClockPage();
-                else if (value.menuType == MenuType.alarm)
-                return AlarmPage();
-               return Container(
-                child: Center(child: Text("Heeeeeeeeeeeeeeeeeey")),
-               );
+                if (value.menuType == MenuType.clock) {
+                  return ClockPage();
+                } else if (value.menuType == MenuType.alarm) return AlarmPage();
+                return Container(
+                  child: const Center(
+                      child: Text(
+                    "POMODORO",
+                    style: TextStyle(
+                        color: Colors.red, fontSize: 30, fontFamily: "avenir"),
+                  )),
+                );
               },
-              
             ),
           ),
         ],
@@ -59,20 +70,19 @@ class _HomePageState extends State<HomePage> {
         return Container(
           width: 95,
           padding: const EdgeInsets.symmetric(vertical: 16.0),
-                     decoration: BoxDecoration(
+          decoration: BoxDecoration(
               color: currentMenuInfo.menuType == value.menuType
-              ? CustomColors.menuBackgroundColor
-              : Colors.transparent,
-    borderRadius: BorderRadius.only(
-      topRight: Radius.circular(30.0),
-    )),
+                  ? CustomColors.menuBackgroundColor
+                  : Colors.transparent,
+              borderRadius: const BorderRadius.only(
+                topRight: Radius.circular(30.0),
+              )),
           child: TextButton(
             onPressed: () {
               setState(() {
                 var menuInfo = Provider.of<MenuInfo>(context, listen: false);
-            menuInfo.updateMenu(currentMenuInfo);
+                menuInfo.updateMenu(currentMenuInfo);
               });
-              
             },
             child: Column(
               children: [
@@ -83,7 +93,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(height: 16),
                 Text(
                   currentMenuInfo.title ?? "",
-                  style: TextStyle(
+                  style: const TextStyle(
                       fontFamily: "avenir", color: Colors.white, fontSize: 14),
                 ),
               ],

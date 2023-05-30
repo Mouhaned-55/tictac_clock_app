@@ -5,11 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
-
-void main() {
+void main() async {
   runApp(const MyApp());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
-
 }
 
 class MyApp extends StatelessWidget {
@@ -18,9 +16,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: ChangeNotifierProvider<MenuInfo>(create: (context) => MenuInfo(MenuType.clock),child:  HomePage()),
+      home: ChangeNotifierProvider<MenuInfo>(
+          create: (context) => MenuInfo(MenuType.clock), child: HomePage()),
     );
   }
 }
