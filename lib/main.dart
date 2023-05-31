@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
 }
