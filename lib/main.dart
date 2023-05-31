@@ -3,14 +3,36 @@ import 'package:clock_app/data/models/menu_info.dart';
 import 'package:clock_app/views/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // var initializationSettingsAndroid = AndroidInitializationSettings('app_logo');
+  // var initializationSettingsIOS = IOSInitializationSettings(
+  //     requestAlertPermission: true,
+  //     requestBadgePermission: true,
+  //     requestSoundPermission: true);
+  // var initializationSettings = InitializationSettings(
+  //     android: initializationSettingsAndroid,
+  //     iOS: initializationSettingsIOS);
+  //
+  // FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  // FlutterLocalNotificationsPlugin();
+  //
+  // await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+  //     onDidReceiveLocalNotification: (int id, String? title, String? body, String? payload) async {
+  //       if (payload != null) {
+  //         debugPrint('notification payload: $payload');
+  //       }
+  //     });
 
   runApp(const MyApp());
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.leanBack);
 }
+
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
