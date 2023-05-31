@@ -133,10 +133,9 @@ class _AlarmPageState extends State<AlarmPage> {
                     padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
                     child: GestureDetector(
                       onTap: () {
+                        scheduleAlarm();
+                        // Noti.showBigTextNotification(title: "office", body: "Time to go to office", fln: flutterLocalNotificationsPlugin);
                         
-                        Noti.showBigTextNotification(title: "office", body: "Time to go to office", fln: flutterLocalNotificationsPlugin);
-                        
-                        // scheduleAlarm();
                       },
                       child: Column(
                         children: [
@@ -169,7 +168,7 @@ class _AlarmPageState extends State<AlarmPage> {
     var scheduledNotificationDateTime =
         DateTime.now().add(Duration(seconds: 1));
     var androidPlatformChannelSpecefics = AndroidNotificationDetails(
-        "alarm_notif", "alarm_notif",
+        "mouhaned_akermi", "mouhaned_akermi",
         icon: "app_logo",
         sound: RawResourceAndroidNotificationSound("a_long_cold_sting"),
         largeIcon: DrawableResourceAndroidBitmap("app_logo"));
@@ -185,6 +184,7 @@ class _AlarmPageState extends State<AlarmPage> {
         iOS: iOSPlatformChannelSpecifics);
     FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
+
     await flutterLocalNotificationsPlugin.schedule(
         0,
         "office",

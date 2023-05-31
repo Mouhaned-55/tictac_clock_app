@@ -20,7 +20,7 @@ class Noti {
     AndroidNotificationDetails androidNotificationDetails =
         const AndroidNotificationDetails("mouhaned_akermi", "mouhaned-akermi",
             playSound: true,
-         //   sound: RawResourceAndroidNotificationSound("a_long_cold_sting"),
+           sound: RawResourceAndroidNotificationSound("a_long_cold_sting"),
             importance: Importance.max,
             priority: Priority.high);
 
