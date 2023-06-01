@@ -1,5 +1,7 @@
 import 'package:clock_app/data/models/menu_info.dart';
 import 'package:clock_app/utils/custom_colors.dart';
+import 'package:clock_app/views/stopwatch_page.dart';
+import 'package:clock_app/views/timer_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
@@ -47,15 +49,11 @@ class _HomePageState extends State<HomePage> {
               builder: (context, value, child) {
                 if (value.menuType == MenuType.clock) {
                   return ClockPage();
-                } else if (value.menuType == MenuType.alarm) return AlarmPage();
-                return Container(
-                  child: const Center(
-                      child: Text(
-                    "POMODORO",
-                    style: TextStyle(
-                        color: Colors.red, fontSize: 30, fontFamily: "avenir"),
-                  )),
-                );
+                } else if (value.menuType == MenuType.alarm) {
+                  return AlarmPage();
+                }  else if (value.menuType == MenuType.stopwatch) {
+                  return StopwatchPage();
+                } return TimerPage();
               },
             ),
           ),

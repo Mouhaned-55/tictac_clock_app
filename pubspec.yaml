@@ -43,6 +43,7 @@ dependencies:
   flutter_native_timezone: ^2.0.0
   sqflite: ^2.0.2+1
   fluttertoast: ^8.2.2
+  lottie: ^2.3.2
 
 
 
@@ -86,6 +87,7 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   assets:
   - assets/
+  - assets/lottie/splash.json
   fonts:
     - family: avenir
       fonts:
