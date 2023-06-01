@@ -22,7 +22,8 @@ class Noti {
             playSound: true,
            sound: RawResourceAndroidNotificationSound("a_long_cold_sting"),
             importance: Importance.max,
-            priority: Priority.high);
+            priority: Priority.high
+        );
 
     var not = NotificationDetails(
         android: androidNotificationDetails,

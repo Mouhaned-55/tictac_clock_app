@@ -42,6 +42,7 @@ dependencies:
   flutter_local_notifications: ^14.1.0
   flutter_native_timezone: ^2.0.0
   sqflite: ^2.0.2+1
+  fluttertoast: ^8.2.2
 
 
 

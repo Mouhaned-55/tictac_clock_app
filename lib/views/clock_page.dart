@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 
 import 'clock_view.dart';
@@ -78,7 +79,7 @@ class _ClockPageState extends State<ClockPage> {
                             const SizedBox(height: 12),
                             Row(
                               children: [
-                                const Icon(Icons.language, color: Colors.white),
+                                SvgPicture.asset("assets/tn.svg"),
                                 const SizedBox(width: 16),
                                 Text(
                                   "UTC$offsetSign$timezoneString",

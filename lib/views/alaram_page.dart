@@ -18,11 +18,12 @@ class AlarmPage extends StatefulWidget {
 
 class _AlarmPageState extends State<AlarmPage> {
   DateTime? _alarmTime;
-   String _alarmTimeString = "";
+  String _alarmTimeString = "";
   bool _isRepeatSelected = false;
   AlarmHelper _alarmHelper = AlarmHelper();
   Future<List<AlarmInfo>>? _alarms;
   List<AlarmInfo>? _currentAlarms;
+  late FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin; // Declare the field as 'late'
 
   @override
   void initState() {
@@ -36,11 +37,11 @@ class _AlarmPageState extends State<AlarmPage> {
 
   void loadAlarms() {
     _alarms = _alarmHelper.getAlarms();
-    if (mounted) setState(() {});
+    if (mounted) setState(() {
+
+    });
   }
 
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-      FlutterLocalNotificationsPlugin();
 
   @override
   Widget build(BuildContext context) {
@@ -272,10 +273,16 @@ class _AlarmPageState extends State<AlarmPage> {
   void scheduleAlarm(DateTime scheduledNotificationDateTime, AlarmInfo alarmInfo, {required bool isRepeating}) async {
 
     var androidPlatformChannelSpecefics = AndroidNotificationDetails(
-        "mouhaned_akermi", "mouhaned_akermi",
-        icon: "app_logo",
-        sound: RawResourceAndroidNotificationSound("a_long_cold_sting"),
-        largeIcon: DrawableResourceAndroidBitmap("app_logo"));
+      "mouhaned_akermi",
+      "mouhaned_akermi",
+      icon: "app_logo",
+      sound: RawResourceAndroidNotificationSound("a_long_cold_sting"), // Specify the sound file
+      playSound: true,
+      largeIcon: DrawableResourceAndroidBitmap("app_logo"),
+      importance: Importance.max,
+      priority: Priority.high,
+    );
+
 
     var iOSPlatformChannelSpecifics = DarwinNotificationDetails(
         sound: "a_long_cold_sting.wav",
@@ -303,13 +310,14 @@ class _AlarmPageState extends State<AlarmPage> {
     } else {
       await flutterLocalNotificationsPlugin.zonedSchedule(
         0,
-        'Office',
+        'Alarm',
         alarmInfo.title,
         tz.TZDateTime.from(scheduledNotificationDateTime, tz.local),
         platformChannelSpecifics,
         androidAllowWhileIdle: true,
         uiLocalNotificationDateInterpretation: UILocalNotificationDateInterpretation.absoluteTime,
       );
+
     }
 
   }
@@ -319,7 +327,7 @@ class _AlarmPageState extends State<AlarmPage> {
     if (_alarmTime!.isAfter(DateTime.now()))
       scheduleAlarmDateTime = _alarmTime;
     else
-      scheduleAlarmDateTime = _alarmTime!.add(Duration(days: 1));
+      scheduleAlarmDateTime = _alarmTime!.add(Duration(seconds: 1));
 
     var alarmInfo = AlarmInfo(
       alarmDateTime: scheduleAlarmDateTime,
